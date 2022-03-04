@@ -1,7 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import useProtectedPage from "../../hooks/useProtectedPage"
 
 const Home = () => {
+    useProtectedPage()
     const token = localStorage.getItem('token')
     console.log(token);
     return (
