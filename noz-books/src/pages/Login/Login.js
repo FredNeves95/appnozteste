@@ -10,14 +10,22 @@ const Login = () => {
 
     const { states, setters } = useContext(Context)
 
-    const [user, setUser] = useState()
-    const [password, setPassword] = useState()
+    const [values, setValues] = useState({
+        email: "",
+        password: "",
+    })
+
 
 
     const click = () => {
         console.log("cliquei");
     }
 
+    const handleChange = (props) => (event) => {
+        setValues({ ...values, [props]: event.target.value })
+    }
+
+    console.log(values);
 
     return (
         <MainContainer>
@@ -30,12 +38,12 @@ const Login = () => {
 
                     <StyledInput >
                         <div>Email</div>
-                        <input type="email" />
+                        <input type="email" value={values.email} onChange={handleChange("email")} />
                     </StyledInput>
 
                     <StyledInput  >
                         <div>Senha</div>
-                        <input type="password" />
+                        <input type="password" value={values.password} onChange={handleChange("password")} />
                         <button onClick={click}>Entrar</button>
                     </StyledInput>
 
