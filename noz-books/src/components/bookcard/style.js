@@ -3,12 +3,14 @@ import styled from "styled-components"
 export const CardContainer = styled.div`
 display: flex;
 align-items: center;
-width: 288px;
+width: 20vw;
+max-width: 340px;
+min-width: 272px;
 height: 160px;
 background: #FFFFFF;
 box-shadow: 0px 6px 24px rgba(84, 16, 95, 0.13);
 border-radius: 4px;
-margin: 16px;
+margin: 8px;
 
 img{
     width: 81px;

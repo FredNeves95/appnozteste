@@ -5,7 +5,7 @@ import { Base_URL } from '../../api/URL'
 import { useEffect, useContext, useState } from 'react'
 import Context from '../../global/Context'
 import BookCard from '../../components/bookcard/BookCard'
-import { HomeContainer } from './style'
+import { HomeContainer, CardsContainer } from './style'
 
 const Home = () => {
     useProtectedPage()
@@ -21,7 +21,7 @@ const Home = () => {
 
 
     useEffect(() => {
-        axios.get(`${Base_URL}/books?page=${page}`, {
+        axios.get(`${Base_URL}/books?page=${page}&amount=12`, {
             headers: {
                 "Accept": "application/json",
                 "Authorization": auth,
@@ -41,11 +41,15 @@ const Home = () => {
     if (books) {
         return (
             <HomeContainer>
-                {books.map((item) => {
-                    return (
-                        <BookCard book={item} key={item.id} />
-                    )
-                })}
+                <div></div>
+                <CardsContainer>
+                    {books.map((item) => {
+                        return (
+                            <BookCard book={item} key={item.id} />
+                        )
+                    })}
+                </CardsContainer>
+
             </HomeContainer>
         )
     }
