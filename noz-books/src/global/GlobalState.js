@@ -5,13 +5,16 @@ import { useState } from 'react'
 const GlobalState = (props) => {
 
     const [books, setBooks] = useState()
+    const [user, setUser] = useState({})
 
     const states = {
-        books
+        books,
+        user
     }
 
     const setters = {
-        setBooks
+        setBooks,
+        setUser
     }
 
     return (

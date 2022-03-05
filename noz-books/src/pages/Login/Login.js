@@ -5,13 +5,14 @@ import { useState, useContext } from 'react'
 import Context from "../../global/Context"
 import axios from "axios";
 import { useNavigate } from 'react-router-dom'
-
-import { Link } from 'react-router-dom'
 import { Base_URL } from '../../api/URL'
 
 const Login = () => {
     const navigate = useNavigate()
-    const { states, setters } = useContext(Context)
+    const { setters } = useContext(Context)
+
+    const setUser = setters.setUser
+
     const [values, setValues] = useState({
         email: "",
         password: "",
@@ -26,6 +27,10 @@ const Login = () => {
         axios.post(`${Base_URL}/auth/sign-in`, values)
             .then((res) => {
                 localStorage.setItem("token", res.headers.authorization)
+                setUser({
+                    name: res.data.name,
+                    gender: res.data.gender
+                })
                 navigate("home")
             }).catch((err) => {
                 console.log(err.response);

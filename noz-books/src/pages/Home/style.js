@@ -97,7 +97,7 @@ export const FooterContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: end;
-    margin: 5vh 12vw auto auto;
+    margin: 5vh 12vw 5vw auto;
 
     h1{
         font-family: Heebo;
@@ -123,5 +123,10 @@ export const FooterContainer = styled.div`
             justify-content: center;
             cursor: pointer;
             margin: 0 8px;
+    }
+
+    @media (max-width: 728px) {
+        width: 100%;
+        justify-content: center;
     }
 `

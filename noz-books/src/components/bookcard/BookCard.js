@@ -15,7 +15,7 @@ const BookCard = (props) => {
                 <h1>{book.title}</h1>
                 {book.authors.map((item) => {
                     return (
-                        <h2>{item}</h2>
+                        <h2 key={item}>{item}</h2>
                     )
                 })}
                 <h3>{book.pageCount} páginas</h3>
