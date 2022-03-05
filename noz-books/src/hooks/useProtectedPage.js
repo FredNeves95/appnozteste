@@ -10,7 +10,7 @@ const useProtectedPage = () => {
             navigate("/")
             alert("Você deve estar logado para acessar essa página.")
         }
-    }, [navigate])
+    }, [])
 }
 
 export default useProtectedPage

@@ -27,6 +27,8 @@ const Login = () => {
         axios.post(`${Base_URL}/auth/sign-in`, values)
             .then((res) => {
                 localStorage.setItem("token", res.headers.authorization)
+                localStorage.setItem("name", res.data.name)
+                localStorage.setItem("gender", res.data.gender)
                 setUser({
                     name: res.data.name,
                     gender: res.data.gender
@@ -61,7 +63,7 @@ const Login = () => {
                     <StyledInput  >
                         <div>Senha</div>
                         <input type="password" value={values.password} onChange={handleChange("password")} />
-                        <button onClick={signIn}>Entrar</button>
+                        <button onClick={signIn} >Entrar</button>
                     </StyledInput>
 
                 </Form>
