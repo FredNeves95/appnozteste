@@ -5,7 +5,13 @@ import { Base_URL } from '../../api/URL'
 import { useEffect, useContext, useState } from 'react'
 import Context from '../../global/Context'
 import BookCard from '../../components/bookcard/BookCard'
-import { HomeContainer, CardsContainer } from './style'
+import { HomeContainer, HeaderContainer, CardsContainer, FooterContainer } from './style'
+import nozDark from "../../images/nozDark.svg"
+import arrow from "../../images/arrow.svg"
+import shape from "../../images/shape.svg"
+import previous from "../../images/previous.svg"
+import next from "../../images/next.svg"
+
 
 const Home = () => {
     useProtectedPage()
@@ -41,7 +47,22 @@ const Home = () => {
     if (books) {
         return (
             <HomeContainer>
-                <div></div>
+
+                <HeaderContainer>
+                    <div className="logo">
+                        <img src={nozDark} alt="Logotipo Noz" />
+                        <h1>Books</h1>
+                    </div>
+                    <div className="logout">
+                        <h1>Bem vindo, <span id="user-name">Fulano!</span></h1>
+
+                        <div className="border">
+                            <img id="shape" src={shape} alt="Ícone de logout" />
+                            <img id="arrow" src={arrow} alt="Ícone de logout" />
+                        </div>
+                    </div>
+                </HeaderContainer>
+
                 <CardsContainer>
                     {books.map((item) => {
                         return (
@@ -49,6 +70,18 @@ const Home = () => {
                         )
                     })}
                 </CardsContainer>
+
+                <FooterContainer>
+                    <h1>Página <span className="page-number">{page}</span> de <span className="page-number">100</span></h1>
+
+                    <div className="border">
+                        <img className="page" src={previous} alt="Página anterior" />
+                    </div>
+
+                    <div className="border">
+                        <img className="page" src={next} alt="Próxima página" />
+                    </div>
+                </FooterContainer>
 
             </HomeContainer>
         )
