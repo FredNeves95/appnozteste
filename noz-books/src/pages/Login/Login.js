@@ -1,23 +1,50 @@
 import React from 'react'
 import { BackgroundStyle, Form, MainContainer, StyledInput, Title } from './style'
 import logo from "../../images/noz.svg"
-import { useState, useEffect, useContext } from 'react'
+import { useState, useContext } from 'react'
 import Context from "../../global/Context"
-
-import { Link } from 'react-router-dom'
+import axios from "axios";
+import { useNavigate } from 'react-router-dom'
+import { Base_URL } from '../../api/URL'
 
 const Login = () => {
+    const navigate = useNavigate()
+    const { setters } = useContext(Context)
 
-    const { states, setters } = useContext(Context)
+    const setUser = setters.setUser
 
-    const [user, setUser] = useState()
-    const [password, setPassword] = useState()
+    const [values, setValues] = useState({
+        email: "",
+        password: "",
+    })
 
-
-    const click = () => {
-        console.log("cliquei");
+    const handleChange = (props) => (event) => {
+        setValues({ ...values, [props]: event.target.value })
     }
 
+
+    const signIn = () => {
+        axios.post(`${Base_URL}/auth/sign-in`, values)
+            .then((res) => {
+                localStorage.setItem("token", res.headers.authorization)
+                localStorage.setItem("name", res.data.name)
+                localStorage.setItem("gender", res.data.gender)
+                setUser({
+                    name: res.data.name,
+                    gender: res.data.gender
+                })
+                navigate("home")
+            }).catch((err) => {
+                console.log(err.response);
+                if (err.response.status === 401) {
+                    alert(`${err.response.data.errors.message}`)
+                    return <></>
+                } else if (err.response.status === 500) {
+                    alert(`${err.response.data.errors.message}`)
+                    return <></>
+                }
+            })
+    }
 
     return (
         <MainContainer>
@@ -30,13 +57,13 @@ const Login = () => {
 
                     <StyledInput >
                         <div>Email</div>
-                        <input type="email" />
+                        <input type="email" value={values.email} onChange={handleChange("email")} />
                     </StyledInput>
 
                     <StyledInput  >
                         <div>Senha</div>
-                        <input type="password" />
-                        <button onClick={click}>Entrar</button>
+                        <input type="password" value={values.password} onChange={handleChange("password")} />
+                        <button onClick={signIn} >Entrar</button>
                     </StyledInput>
 
                 </Form>
