@@ -42,7 +42,7 @@ const Home = () => {
     const handleCloseModal = () => {
         setOpenModal(false)
     };
-    console.log(bookId);
+
     useEffect(() => {
         axios.get(`${Base_URL}/books?page=${page}&amount=12`, {
             headers: {
