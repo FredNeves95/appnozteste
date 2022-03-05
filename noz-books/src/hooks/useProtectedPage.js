@@ -8,6 +8,7 @@ const useProtectedPage = () => {
     useEffect(() => {
         if (token === null) {
             navigate("/")
+            alert("Você deve estar logado para acessar essa página.")
         }
     }, [navigate])
 }
