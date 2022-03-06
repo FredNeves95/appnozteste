@@ -5,6 +5,7 @@ export const BookInfoContainer = styled.div`
     max-width: 1000px;
     min-height: 80vh;
     background-color: white;
+    overflow-y: auto;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -15,7 +16,7 @@ export const BookInfoContainer = styled.div`
     @media(max-width: 980px) {
         width: 84vw;
         justify-content: center;
-        padding: 24px;
+        padding: 24px 0;
     }
 `
 
@@ -28,6 +29,12 @@ img{
     max-height: 513px;
 }
 
+@media(max-width: 400px){
+    margin-bottom: 24px;
+    img{
+        max-height: 351px;
+    }
+}
 `
 
 export const BookInfoText = styled.div`
