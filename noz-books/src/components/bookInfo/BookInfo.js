@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState, useEffect, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { BookInfoContainer, BookInfoImage, BookInfoText } from './style'
 import Context from '../../global/Context';
 import axios from 'axios';
@@ -8,6 +9,7 @@ import quotes from "../../images/quotes.svg"
 
 
 const BookInfo = () => {
+    const navigate = useNavigate()
     const { states } = useContext(Context)
     const [bookDetail, setBookDetail] = useState()
     const token = localStorage.getItem('token')
@@ -26,10 +28,19 @@ const BookInfo = () => {
                 setBookDetail(res.data)
             })
             .catch((err) => {
-                console.log(err.response);
+
+                if (err.response.status === 400) {
+                    alert("Faça Login novamente.")
+                    navigate("/")
+                    localStorage.clear()
+                } else if (err.response.status === 404) {
+                    alert("Livro não encontrado.")
+                } else if (err.response.status === 500) {
+                    alert("Ops! Ocorreu um erro no servidor.")
+                }
             })
     }, [])
-    console.log(bookDetail);
+
     if (bookDetail) {
         return (
             <BookInfoContainer key={bookId}>
