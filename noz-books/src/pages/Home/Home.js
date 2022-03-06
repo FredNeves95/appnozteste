@@ -102,6 +102,9 @@ const Home = () => {
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
+                        '@media(max-width: 1200px)': {
+                            margin: "64px 16px 16px 16px",
+                        },
                     }}
 
                 >
