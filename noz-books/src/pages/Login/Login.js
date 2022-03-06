@@ -37,11 +37,9 @@ const Login = () => {
             }).catch((err) => {
                 console.log(err.response);
                 if (err.response.status === 401) {
-                    alert(`${err.response.data.errors.message}`)
-                    return <></>
+                    alert("Usuário ou senha inválida.")
                 } else if (err.response.status === 500) {
-                    alert(`${err.response.data.errors.message}`)
-                    return <></>
+                    alert("Ocorreu um erro no servidor.")
                 }
             })
     }
@@ -58,6 +56,7 @@ const Login = () => {
                     <StyledInput >
                         <div>Email</div>
                         <input type="email" value={values.email} onChange={handleChange("email")} />
+
                     </StyledInput>
 
                     <StyledInput  >
@@ -65,7 +64,9 @@ const Login = () => {
                         <input type="password" value={values.password} onChange={handleChange("password")} />
                         <button onClick={signIn} >Entrar</button>
                     </StyledInput>
-
+                    <div className="login-error">
+                        Usuário e/ou senha incorretos.
+                    </div>
                 </Form>
 
             </BackgroundStyle>
