@@ -52,11 +52,15 @@ const BookInfo = () => {
                 <BookInfoText>
                     <div className="book-info-text-container">
                         <h1 id="book-title">{bookDetail.title}</h1>
-                        {
-                            bookDetail.authors.map((item) => {
-                                return <h2 className="book-authors" key={item}>{item}</h2>
+                        <h2 className="book-authors">{
+                            bookDetail.authors.map((item, index) => {
+                                if (bookDetail.authors.length === index + 1) {
+                                    return (`${item}.`)
+                                }
+                                return `${item}, `
                             })
-                        }
+                        }</h2>
+
                         <div id="book-infos">
                             <h1 className="section-title">Informações</h1>
                             <div className="book-info">

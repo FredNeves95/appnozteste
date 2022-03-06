@@ -70,7 +70,7 @@ const Login = () => {
                     {
                         loginError ?
                             <div className="login-error">
-                                Usuário e/ou senha incorretos.
+                                E-mail e/ou senha incorretos.
                             </div> :
                             <></>
                     }
