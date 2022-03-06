@@ -86,6 +86,7 @@ export const HeaderContainer = styled.div`
 
 export const CardsContainer = styled.div`
 width: 80%;
+max-width: 1600px;
 display: flex;
 flex-wrap: wrap;
 align-items: center;

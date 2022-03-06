@@ -18,6 +18,8 @@ const Login = () => {
         password: "",
     })
 
+    const [loginError, setLoginError] = useState(false)
+
     const handleChange = (props) => (event) => {
         setValues({ ...values, [props]: event.target.value })
     }
@@ -33,15 +35,14 @@ const Login = () => {
                     name: res.data.name,
                     gender: res.data.gender
                 })
+                setLoginError(false)
                 navigate("home")
             }).catch((err) => {
                 console.log(err.response);
                 if (err.response.status === 401) {
-                    alert(`${err.response.data.errors.message}`)
-                    return <></>
+                    setLoginError(true)
                 } else if (err.response.status === 500) {
-                    alert(`${err.response.data.errors.message}`)
-                    return <></>
+                    alert("Ocorreu um erro no servidor.")
                 }
             })
     }
@@ -58,6 +59,7 @@ const Login = () => {
                     <StyledInput >
                         <div>Email</div>
                         <input type="email" value={values.email} onChange={handleChange("email")} />
+
                     </StyledInput>
 
                     <StyledInput  >
@@ -65,6 +67,13 @@ const Login = () => {
                         <input type="password" value={values.password} onChange={handleChange("password")} />
                         <button onClick={signIn} >Entrar</button>
                     </StyledInput>
+                    {
+                        loginError ?
+                            <div className="login-error">
+                                E-mail e/ou senha incorretos.
+                            </div> :
+                            <></>
+                    }
 
                 </Form>
 

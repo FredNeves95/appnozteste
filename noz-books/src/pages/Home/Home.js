@@ -55,7 +55,13 @@ const Home = () => {
                 setBooks(res.data.data);
             })
             .catch((err) => {
-                console.log((err.response));
+                if (err.response.status === 401) {
+                    alert("Senha incorreta! Faça Login novamente.")
+                    navigate("/")
+                    localStorage.clear()
+                } else if (err.response.status === 500) {
+                    alert("Ops! Ocorreu um erro no servidor.")
+                }
             })
     }, [page])
 
@@ -102,6 +108,9 @@ const Home = () => {
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
+                        '@media(max-width: 1200px)': {
+                            margin: "64px 16px 16px 16px",
+                        },
                     }}
 
                 >

@@ -31,10 +31,39 @@ left: 10vw;
 position: absolute;
 display: flex;
 flex-direction: column;
+
+.login-error{
+    margin: 0;
+    font-family: Heebo;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 16px;
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(2px);
+    border-radius: 4px;
+    width: 264px;
+    height: auto;
+    color: white;
+    padding: 20px;
+    position: relative;
+    margin-top: 24px;
+}
+.login-error:after{
+    content: "";
+    width: 0;
+    height: 0;
+    position: absolute;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid rgba(255, 255, 255, 0.4);
+    top: -10px;
+    left: 8%;
+}
 `
 
 export const Title = styled.h1`
-font-family: "Heebo";
+font-family: Heebo;
 font-style: normal;
 font-weight: 300;
 font-size: 28px;
@@ -66,7 +95,7 @@ div{
 position: absolute;
 left: 16px;
 top: 8px;
-font-family: "Heebo";
+font-family: Heebo;
 font-style: normal;
 font-weight: 400;
 font-size: 12px;
@@ -83,7 +112,7 @@ width: 100%;
 background: none;
 border: none;
 color: white;
-font-family: "Heebo";
+font-family: Heebo;
 font-style: normal;
 font-weight: 400;
 font-size: 16px;
@@ -104,7 +133,7 @@ button{
     background-color: white;
     border: none;
     border-radius: 44px;
-    font-family: "Heebo";
+    font-family: Heebo;
     font-style: normal;
     font-weight: 500;
     font-size: 16px;
