@@ -18,6 +18,8 @@ const Login = () => {
         password: "",
     })
 
+    const [loginError, setLoginError] = useState(false)
+
     const handleChange = (props) => (event) => {
         setValues({ ...values, [props]: event.target.value })
     }
@@ -33,11 +35,12 @@ const Login = () => {
                     name: res.data.name,
                     gender: res.data.gender
                 })
+                setLoginError(false)
                 navigate("home")
             }).catch((err) => {
                 console.log(err.response);
                 if (err.response.status === 401) {
-                    alert("Usuário ou senha inválida.")
+                    setLoginError(true)
                 } else if (err.response.status === 500) {
                     alert("Ocorreu um erro no servidor.")
                 }
@@ -64,9 +67,14 @@ const Login = () => {
                         <input type="password" value={values.password} onChange={handleChange("password")} />
                         <button onClick={signIn} >Entrar</button>
                     </StyledInput>
-                    <div className="login-error">
-                        Usuário e/ou senha incorretos.
-                    </div>
+                    {
+                        loginError ?
+                            <div className="login-error">
+                                Usuário e/ou senha incorretos.
+                            </div> :
+                            <></>
+                    }
+
                 </Form>
 
             </BackgroundStyle>

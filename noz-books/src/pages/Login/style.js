@@ -47,7 +47,7 @@ flex-direction: column;
     color: white;
     padding: 20px;
     position: relative;
-    margin-top: 30px;
+    margin-top: 24px;
 }
 .login-error:after{
     content: "";
