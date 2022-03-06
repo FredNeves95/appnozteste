@@ -55,7 +55,13 @@ const Home = () => {
                 setBooks(res.data.data);
             })
             .catch((err) => {
-                console.log((err.response));
+                if (err.response.status === 401) {
+                    alert("Senha incorreta! Faça Login novamente.")
+                    navigate("/")
+                    localStorage.clear()
+                } else if (err.response.status === 500) {
+                    alert("Ops! Ocorreu um erro no servidor.")
+                }
             })
     }, [page])
 
